@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-FILE="seir-forecast.ipynb"
+FILE="/seir-forecast/seir-forecast.ipynb"
 if [ ! -f $FILE ]; then
   echo "$FILE not exist. Exiting..."
   exit 1
@@ -13,15 +13,15 @@ jupyter nbconvert --to notebook --inplace --execute "$FILE"
 
 echo "Copying to S3 bucket..."
 if [[ -n "$S3_BUCKET" ]]; then
-  aws s3 cp "simulated_cases.txt" "$S3_BUCKET/simulated_cases.txt"
-  aws s3 cp "observed_cases.txt" "$S3_BUCKET/observed_cases.txt"
+  aws s3 cp "/seir-forecast/simulated_cases.txt" "$S3_BUCKET/simulated_cases.txt"
+  aws s3 cp "/seir-forecast/observed_cases.txt" "$S3_BUCKET/observed_cases.txt"
 fi
 
 #### 
 ## bayes-by-county big sim
 ####
 
-cd ../covid19-notebooks/bayes-by-county/
+cd /covid19-notebooks/bayes-by-county/
 
 echo "Running bayes-by-county..."
 # sh run.sh <stan_model> <deaths_cutoff> <nIterations>
