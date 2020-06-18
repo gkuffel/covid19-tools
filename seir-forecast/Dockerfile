@@ -51,6 +51,9 @@ RUN Rscript -e "update.packages(.libPaths()[1])"
 # RUN ls
 # RUN ls /
 
+# check
+ADD . .
+
 COPY /covid19-notebooks/bayes-by-county/modelInput /covid19-notebooks/bayes-by-county/modelInput/
 COPY /covid19-notebooks/bayes-by-county/stan /covid19-notebooks/bayes-by-county/stan/
 COPY /covid19-notebooks/bayes-by-county/r /covid19-notebooks/bayes-by-county/r/
